@@ -104,3 +104,131 @@ Função Free
     }
 
     ```
+
+## Declaração e definição de Struct em c
+
+- É como um pacote organizado que permite armazenar diferentes tipos de dados dentro de uma unica unidade. Dados Heterogêneos.
+
+Exemplo:
+
+    ``` c
+    struct Pessoa {
+        char nome[50];
+        int idade;
+        char telefone[15];
+        };
+
+    ```
+
+Exemplo:
+
+    ``` c
+        #include <stdio.h>
+    #include <string.h>
+
+    struct Pessoa {
+            char nome[50];
+            int idade;
+            char telefone[15];
+    };
+
+    int main() {
+        struct Pessoa lista[3];
+        int i;
+
+        // preenchendo as informações para cada pessoa
+        strcpy(lista[0].nome, "Alana");
+        lista[0].idade = 18;
+        strcpy(lista[0].telefone, "12345-6789");
+        
+        strcpy(lista[1].nome, "Lucas");
+        lista[1].idade = 12;
+        strcpy(lista[1].telefone, "98765-4321");
+        
+        strcpy(lista[2].nome, "Julia");
+        lista[2].idade = 7;
+        strcpy(lista[2].telefone, "54321-6789");
+        
+        // imprimindo as informações
+        for (i = 0; i < 3; i++) {
+            printf("Nome: %s\n", lista[i].nome);
+            printf("Idade: %d\n", lista[i].idade);
+            printf("Telefone: %s\n\n", lista[i].telefone);
+        };
+
+        return 0;
+        
+    };
+    ```
+
+## Struc Aninhadas
+
+Exemplo:
+
+    ``` c
+    #include <stdio.h>
+    #include <string.h>
+
+    struct Disciplina {
+            char nome[30];
+            char professor[50];
+            int cargaHoraria;
+    };
+
+    struct Aluno {
+            char nome[50];
+            int idade;
+            int matricula;
+            // Struct curso aninhada dentro de Aluno
+            struct Disciplina disciplina[3]; // 3 registros
+    };
+
+
+    void cadastrarDisciplina(struct Disciplina *disciplina, const char *nome, const char *professor, int cargaHoraria) {
+        strcpy(disciplina->nome, nome);
+        strcpy(disciplina->professor, professor);
+        disciplina->cargaHoraria = cargaHoraria;
+    };
+
+    void cadastrarAluno(struct Aluno *aluno, const char *nome, int idade, int matricula) {
+        strcpy(aluno->nome, nome);
+        aluno->idade = idade;
+        aluno->matricula = matricula;
+
+        cadastrarDisciplina(&aluno->disciplina[0], "Matematica", "Prof Joao", 60);
+        cadastrarDisciplina(&aluno->disciplina[1], "Historia", "Prof Maria", 45);
+        cadastrarDisciplina(&aluno->disciplina[2], "Quimica", "Prof Carlos", 50);
+    };
+
+    void exibirAluno(struct Aluno *aluno) {
+        int i;
+
+        printf("Nome do aluno: %s\n", aluno->nome);
+        printf("Idade: %d\n", aluno->idade);
+        printf("Matricula: %d\n", aluno->matricula);
+
+        printf("Disciplinas: \n");
+        for (i = 0; i < 3; i++) {
+            printf(" Disciplina %d: \n", i +1);
+            printf(" Nome: %s\n", aluno->disciplina[i].nome);
+            printf(" Professor: %s\n", aluno->disciplina[i].professor);
+            printf(" Carga horaria: %d horas\n", aluno->disciplina[i].cargaHoraria);
+        };
+
+        
+    };
+
+    int main() {
+        struct Aluno aluno1;
+
+        cadastrarAluno(&aluno1, "Alana", 20, 1234);
+        exibirAluno(&aluno1);
+
+        return 0;
+        
+        };
+    ```
+
+## Array de Structs
+
+É um estrutura que armazena vários elementos do mesmo tipo em uma sequencia.
