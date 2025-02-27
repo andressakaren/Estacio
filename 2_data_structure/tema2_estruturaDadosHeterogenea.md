@@ -7,9 +7,12 @@
 - HD ou SSD - Hard Disk ou Solid State Drive
     "memoria permanente"
 - Cache
+    "memória rápida"
 - memória virtual
+    "Memória em nuvem"
 - memória ROM
     "memória essencial para a execução do computador"
+    "Read only memory - apenas para leitura, não é permitido gravação de informações"
 
 ## Regiões de memória
 
@@ -29,16 +32,31 @@
 
 ## Alocação em Memória
 
-Como os dados sao armazenados e manpulados quando o programa está em execução
+Como os dados sao armazenados e manipulados quando o programa está em execução
 
 Reservar um espaço na memória
 
 Tipos de alocação:
     - Automática
-        Geralmente alocada em DATA. Exemplo, a variável número: ![ tealtxt](image-1.png)
-    - Estática
+Geralmente alocada em DATA. Exemplo, a variável número:
+
+    ``` C
+        #include <stdio.h>
+        void funcaoEx(){
+            int numero = 10;
+            printf("Valor do numero: %d\n", numero);
+        };
+
+        int main(){
+            funcaoEx();
+            return 0;
+        };
+
+    ```
+
+- Estática
         Permanecem na memória durante toda a execução do programa, exemplo valorGlobal:![alt text](image-2.png)
-    - Dinâmica
+- Dinâmica
         Permite que o programa reserve memória conforme a necessidade
 
 Função malloc (Memory Allocation)
